@@ -440,11 +440,28 @@
   }
   function render(){
     grid.innerHTML=Object.keys(stock).map(name=>{const on=!!stock[name];return `<div class="admin-row"><div class="admin-product"><span class="admin-dot ${on?'':'out'}"></span><div><strong>${name}</strong><span>${on?'Available for ordering':'Orders disabled'}</span></div></div><button class="stock-toggle ${on?'available':'out'}" data-product="${name.replace(/&/g,'&amp;').replace(/"/g,'&quot;')}">${on?'AVAILABLE':'OUT OF STOCK'}</button></div>`;}).join('');
-    grid.querySelectorAll('.stock-toggle').forEach(btn=>btn.addEventListener('click',async()=>{
-      const name=btn.dataset.product; btn.disabled=true;
-      try{await ownerAction({action:'set',product:name,available:!stock[name]});status.textContent=`${name}: ${stock[name]?'available':'out of stock'}.`;render();}
-      catch(e){status.textContent=e.message;btn.disabled=false;}
-    }));
+   grid.addEventListener('click',async e=>{
+  const btn=e.target.closest('.stock-toggle');
+  if(!btn || btn.disabled)return;
+
+  const name=btn.dataset.product;
+  btn.disabled=true;
+
+  try{
+    const next=!stock[name];
+    await ownerAction({
+      action:'set',
+      product:name,
+      available:next
+    });
+    stock[name]=next;
+    status.textContent=`${name}: ${next?'available':'out of stock'}.`;
+    render();
+  }catch(e){
+    status.textContent=e.message;
+    btn.disabled=false;
+  }
+});
   }
   function open(){panel.classList.add('open');panel.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}
   function close(){panel.classList.remove('open');panel.setAttribute('aria-hidden','true');document.body.style.overflow='';}
