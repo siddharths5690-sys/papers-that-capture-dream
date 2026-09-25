@@ -405,7 +405,7 @@
 </div>
 <script>
 (function(){
-  const ADMIN_PASSWORD='Tanishka@1829';
+  const ADMIN_PASSWORD='';
   const defaults={'Blush Bloom':true,'Dear Future Me':true,'Study Darling':true,'Rose Notes':true,'Custom Notebook':true};
   let stock={...defaults};
   let ownerPassword='';
@@ -453,11 +453,24 @@
   panel.addEventListener('click',e=>{if(e.target===panel)close();});
   document.getElementById('adminLoginBtn').addEventListener('click',async()=>{
     const entered=document.getElementById('adminPassword').value;
-    if(entered!==ADMIN_PASSWORD){loginStatus.textContent='Incorrect password.';return;}
-    ownerPassword=entered;
-    try{await loadStock();loggedIn=true;login.style.display='none';content.style.display='block';render();status.textContent='Connected to live stock status.';}
-    catch(e){loginStatus.textContent='Could not connect to stock service.';}
+   ownerPassword=entered;
+try{
+  await loadStock();
+  await ownerAction({
+    action:'set',
+    product:'Blush Bloom',
+    available:!!stock['Blush Bloom']
   });
+  loggedIn=true;
+  login.style.display='none';
+  content.style.display='block';
+  render();
+  status.textContent='Connected to live stock status.';
+}catch(e){
+  ownerPassword='';
+  loginStatus.textContent='Incorrect password.';
+}
+    });
   document.getElementById('adminPassword').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('adminLoginBtn').click();});
   document.getElementById('resetStock').addEventListener('click',async()=>{
     try{await ownerAction({action:'reset'});render();status.textContent='All products reset to available.';}catch(e){status.textContent=e.message;}
