@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://stellar-biscuit-6c24c4.netlify.app/sitemap.xml
