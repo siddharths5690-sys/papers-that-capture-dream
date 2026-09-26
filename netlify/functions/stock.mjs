@@ -8,7 +8,8 @@ const DEFAULTS = {
   "Dear Future Me": true,
   "Study Darling": true,
   "Rose Notes": true,
-  "Custom Notebook": true
+  "Custom Notebook": true,
+  "Lavender Butterfly Dreams": true
 };
 
 const json = (data, status = 200) =>
