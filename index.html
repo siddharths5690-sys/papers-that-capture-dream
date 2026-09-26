@@ -88,6 +88,72 @@
     .placeholder{height:100%;display:grid;place-items:center;padding:25px;background:linear-gradient(145deg,#efc7d0,#fff1ea)}
     .mock-notebook{width:58%;height:72%;border-radius:9px;background:linear-gradient(145deg,#f9dfe3,#fffaf5);box-shadow:0 16px 28px rgba(80,40,45,.16);display:grid;place-items:center;text-align:center;border:1px solid #e2b6c0;transform:rotate(-5deg)}
     .mock-notebook span{font-family:"Parisienne";font-size:26px;color:var(--deep-rose);padding:12px}
+    .lavender-carousel{
+  position:relative;
+  background:#f7edf8;
+  overflow:hidden;
+}
+
+.lavender-slides{
+  width:100%;
+  height:100%;
+  display:flex;
+  transition:transform .35s ease;
+  touch-action:pan-y;
+}
+
+.lavender-slides img{
+  min-width:100%;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  padding:8px;
+  box-sizing:border-box;
+}
+
+.lavender-arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:38px;
+  height:38px;
+  border:0;
+  border-radius:50%;
+  background:rgba(255,255,255,.92);
+  color:#7d5277;
+  font-size:25px;
+  line-height:38px;
+  text-align:center;
+  cursor:pointer;
+  box-shadow:0 4px 15px rgba(80,40,70,.15);
+  z-index:5;
+}
+
+.lavender-prev{left:10px}
+.lavender-next{right:10px}
+
+.lavender-dots{
+  position:absolute;
+  left:50%;
+  bottom:10px;
+  transform:translateX(-50%);
+  display:flex;
+  gap:6px;
+  z-index:5;
+}
+
+.lavender-dot{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:rgba(255,255,255,.65);
+  border:1px solid rgba(100,60,100,.25);
+}
+
+.lavender-dot.active{
+  background:#8c5b87;
+}
     .product-info{padding:18px}
     .product-info h3{font-size:25px}
     .meta{display:flex;justify-content:space-between;color:#91777b;font-size:11px;margin:6px 0 13px}
@@ -216,6 +282,44 @@
           <article class="product" data-product="Dear Future Me"><div class="product-img"><div class="placeholder" style="background:linear-gradient(145deg,#f4dfd5,#fff8ef)"><div class="mock-notebook" style="background:#fff3e6"><span>Dear<br>Future<br>Me ♡</span></div></div></div><div class="product-info"><h3>Dear Future Me Aesthetic Notebook</h3><div class="meta"><span>A5 · 200 pages</span><span>Premium</span></div><div class="price">₹499</div><div class="product-stock-row"><span class="stock-badge" data-stock-badge="Dear Future Me">IN STOCK</span></div><button class="btn btn-primary product-order-btn" style="width:100%;margin-top:12px" data-order-product="Dear Future Me" onclick="order('Dear Future Me')">Order Now</button></div></article>
           <article class="product" data-product="Study Darling"><div class="product-img"><div class="placeholder" style="background:linear-gradient(145deg,#efd6df,#f8e8f0)"><div class="mock-notebook" style="background:#f8e8f0"><span>Study<br>pretty.<br>Dream big.</span></div></div></div><div class="product-info"><h3>Study Darling</h3><div class="meta"><span>A4 · 180 pages</span><span>Softcover</span></div><div class="price">₹349</div><div class="product-stock-row"><span class="stock-badge" data-stock-badge="Study Darling">IN STOCK</span></div><button class="btn btn-primary product-order-btn" style="width:100%;margin-top:12px" data-order-product="Study Darling" onclick="order('Study Darling')">Order Now</button></div></article>
           <article class="product" data-product="Rose Notes"><div class="product-img"><div class="placeholder" style="background:linear-gradient(145deg,#ead0d5,#fff1ec)"><div class="mock-notebook" style="background:#f4dce0"><span>Notes,<br>dreams<br>& roses 🌷</span></div></div></div><div class="product-info"><h3>Rose Notes</h3><div class="meta"><span>A5 · 160 pages</span><span>Hardcover</span></div><div class="price">₹449</div><div class="product-stock-row"><span class="stock-badge" data-stock-badge="Rose Notes">IN STOCK</span></div><button class="btn btn-primary product-order-btn" style="width:100%;margin-top:12px" data-order-product="Rose Notes" onclick="order('Rose Notes')">Order Now</button></div></article>
+          <article class="product" data-product="Lavender Butterfly Dreams">
+  <div class="product-img lavender-carousel">
+    <div class="lavender-slides" id="lavenderSlides">
+      <img src="01-lavender-butterfly.jpg" alt="Lavender Butterfly Dreams notebook - view 1">
+      <img src="02-lavender-butterfly.jpg" alt="Lavender Butterfly Dreams notebook - view 2">
+      <img src="03-lavender-butterfly.jpg" alt="Lavender Butterfly Dreams notebook - view 3">
+    </div>
+
+    <button type="button" class="lavender-arrow lavender-prev" onclick="moveLavender(-1)">←</button>
+    <button type="button" class="lavender-arrow lavender-next" onclick="moveLavender(1)">→</button>
+
+    <div class="lavender-dots">
+      <span class="lavender-dot active"></span>
+      <span class="lavender-dot"></span>
+      <span class="lavender-dot"></span>
+    </div>
+  </div>
+
+  <div class="product-info">
+    <h3>Lavender Butterfly Dreams</h3>
+    <div class="meta">
+      <span>Lavender Butterfly Design</span>
+      <span>Aesthetic Notebook</span>
+    </div>
+    <div class="price">₹249</div>
+
+    <div class="product-stock-row">
+      <span class="stock-badge" data-stock-badge="Lavender Butterfly Dreams">IN STOCK</span>
+    </div>
+
+    <button class="btn btn-primary product-order-btn"
+      style="width:100%;margin-top:12px"
+      data-order-product="Lavender Butterfly Dreams"
+      onclick="order('Lavender Butterfly Dreams')">
+      Order Now
+    </button>
+  </div>
+</article>
         </div>
       </div>
     </section>
@@ -295,7 +399,7 @@
             <div class="field"><label>Your name</label><input id="orderName" required placeholder="Your name"></div>
             <div class="field"><label>WhatsApp number</label><input id="orderWhatsapp" required inputmode="tel" pattern="[0-9+()\- ]{10,16}" placeholder="e.g. +91 9876543210"></div>
             <div class="field"><label>Delivery address</label><textarea id="orderAddress" required placeholder="Full delivery address"></textarea></div>
-            <div class="field"><label>Product</label><select id="product"><option value="Blush Bloom">Blush Bloom — ₹399</option><option value="Dear Future Me">Dear Future Me — ₹499</option><option value="Study Darling">Study Darling — ₹349</option><option value="Rose Notes">Rose Notes — ₹449</option><option value="Custom Notebook">Custom Notebook — Price to be confirmed</option></select></div>
+            <div class="field"><label>Product</label><select id="product"><option value="Lavender Butterfly Dreams">Lavender Butterfly Dreams — ₹249</option><option value="Blush Bloom">Blush Bloom — ₹399</option><option value="Dear Future Me">Dear Future Me — ₹499</option><option value="Study Darling">Study Darling — ₹349</option><option value="Rose Notes">Rose Notes — ₹449</option><option value="Custom Notebook">Custom Notebook — Price to be confirmed</option></select></div>
             <div class="field"><label>Quantity</label><input id="qty" type="number" min="1" value="1" required></div>
             <div class="field"><label>Customization / delivery notes</label><textarea id="message" placeholder="Any customization or delivery notes?"></textarea></div>
             <div class="payment-card" id="paymentCard">
@@ -344,7 +448,7 @@
     function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200);}
     const STORE_UPI='7988415690@ybl';
     const STORE_WHATSAPP='919653515690';
-    const PRODUCT_PRICES={'Blush Bloom':399,'Dear Future Me':499,'Study Darling':349,'Rose Notes':449};
+    const PRODUCT_PRICES={'Lavender Butterfly Dreams':249,'Blush Bloom':399,'Dear Future Me':499,'Study Darling':349,'Rose Notes':449};
     function order(product){if(window.PRODUCT_STOCK && window.PRODUCT_STOCK[product]===false){showToast(product+' is currently OUT OF STOCK. ♡');return;}document.getElementById('product').value=product;scrollToId('contact');showToast(product+' added to your order request ♡');}
     function continueToPayment(e){if(e){e.preventDefault();e.stopPropagation();}
       const name=document.getElementById('orderName').value.trim();
@@ -386,6 +490,45 @@
     function closeSuccess(){document.getElementById('successModal').classList.remove('show');}
     function escapeHtml(str){return String(str).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[c]));}
     function submitCustom(e){e.preventDefault();const name=document.getElementById('name').value,type=document.getElementById('type').value,quote=document.getElementById('quote').value,theme=document.getElementById('theme').value,details=document.getElementById('details').value;const text=`Hi! I want a custom notebook.%0AName: ${encodeURIComponent(name)}%0AType: ${encodeURIComponent(type)}%0AQuote: ${encodeURIComponent(quote)}%0ATheme: ${encodeURIComponent(theme)}%0ADetails: ${encodeURIComponent(details)}`;window.open('https://wa.me/919653515690?text='+text,'_blank');}
+    let lavenderIndex = 0;
+let lavenderStartX = 0;
+
+function updateLavender(){
+  const slides = document.getElementById('lavenderSlides');
+  if(!slides) return;
+
+  slides.style.transform = `translateX(-${lavenderIndex * 100}%)`;
+
+  document.querySelectorAll('.lavender-dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === lavenderIndex);
+  });
+}
+
+function moveLavender(direction){
+  lavenderIndex += direction;
+
+  if(lavenderIndex < 0) lavenderIndex = 2;
+  if(lavenderIndex > 2) lavenderIndex = 0;
+
+  updateLavender();
+}
+
+const lavenderSlides = document.getElementById('lavenderSlides');
+
+if(lavenderSlides){
+  lavenderSlides.addEventListener('touchstart', e => {
+    lavenderStartX = e.touches[0].clientX;
+  }, {passive:true});
+
+  lavenderSlides.addEventListener('touchend', e => {
+    const endX = e.changedTouches[0].clientX;
+    const difference = lavenderStartX - endX;
+
+    if(Math.abs(difference) > 45){
+      moveLavender(difference > 0 ? 1 : -1);
+    }
+  }, {passive:true});
+}
   </script>
 <div class="owner-login-wrap"><button id="openAdmin" class="owner-login-btn" type="button" aria-label="Owner Login">🔒</button></div>
 <div class="admin-panel" id="adminPanel" aria-hidden="true">
